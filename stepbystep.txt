@@ -78,3 +78,13 @@ newsinglechoice.html
 
 "új aloldal létrehozása"
 csak az űrlap megjelenítéséért felel
+
+data-th-action="@{/singlechoices/create}"
+Melyik endpoint fogja kezelni a kitöltött és visszaküldött űrlapot?
+
+data-th-object="${question}"
+Melyik modellben tárolt objektumot jelenítsük meg?
+(model.addAttribute("question", new SingleChoiceQuestion()))
+
+POST requestként érdemes visszaküldeni
+method="post"
