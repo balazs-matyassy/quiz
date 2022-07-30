@@ -1,5 +1,6 @@
 package hu.progmatic.quiz.service;
 
+import hu.progmatic.quiz.form.SingleChoiceSearchForm;
 import hu.progmatic.quiz.model.SingleChoiceQuestion;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +41,24 @@ public class SingleChoiceService {
 
     public SingleChoiceQuestion getById(Long id) {
         return questions.get(id);
+    }
+
+    public List<SingleChoiceQuestion> getByForm(SingleChoiceSearchForm form) {
+        List<SingleChoiceQuestion> result = new ArrayList<>();
+
+        for (SingleChoiceQuestion question : questions.values()) {
+            if (form.getId() != null && !form.getId().equals(question.getId())) {
+                continue;
+            }
+
+            if (form.getQuestion() != null && !question.getQuestion().contains(form.getQuestion())) {
+                continue;
+            }
+
+            result.add(question);
+        }
+
+        return result;
     }
 
     public SingleChoiceQuestion saveQuestion(SingleChoiceQuestion question) {

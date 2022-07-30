@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search single choices</title>
+</head>
+<body>
+<h1>Search single choices</h1>
+<form data-th-action="@{/singlechoices/search}" data-th-object="${form}" method="post">
+    <table>
+        <tr>
+            <th>Id:</th>
+            <td><input type="text" data-th-field="*{id}" /></td>
+        </tr>
+        <tr>
+            <th>Question:</th>
+            <td><input type="text" data-th-field="*{question}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit">Search questions</button></td>
+        </tr>
+    </table>
+</form>
+<h1>Search results</h1>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>Option A.</th>
+        <th>Option B.</th>
+        <th>Option C.</th>
+        <th>Option D.</th>
+    </tr>
+    <tr data-th-each="question: ${questions}">
+        <td><a data-th-href="@{/singlechoices/{id}(id=${question.id})}" data-th-text="${question.id}"></a></td>
+        <td data-th-text="${question.question}"></td>
+        <td data-th-text="${question.answer}"></td>
+        <td data-th-text="${question.optionA}"></td>
+        <td data-th-text="${question.optionB}"></td>
+        <td data-th-text="${question.optionC}"></td>
+        <td data-th-text="${question.optionD}"></td>
+    </tr>
+</table>
+</body>
+</html>

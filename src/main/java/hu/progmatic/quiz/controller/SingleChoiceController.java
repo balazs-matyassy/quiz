@@ -1,5 +1,6 @@
 package hu.progmatic.quiz.controller;
 
+import hu.progmatic.quiz.form.SingleChoiceSearchForm;
 import hu.progmatic.quiz.model.SingleChoiceQuestion;
 import hu.progmatic.quiz.service.SingleChoiceService;
 import org.springframework.stereotype.Controller;
@@ -48,5 +49,23 @@ public class SingleChoiceController {
         singleChoiceService.saveQuestion(question);
 
         return "redirect:/singlechoices";
+    }
+
+    @GetMapping("/singlechoices/search")
+    public String searchQuestions(Model model) {
+        List<SingleChoiceQuestion> questions = singleChoiceService.getAll();
+        model.addAttribute("form", new SingleChoiceSearchForm());
+        model.addAttribute("questions", questions);
+
+        return "searchsinglechoices";
+    }
+
+    @PostMapping("/singlechoices/search")
+    public String displaySearchResults(SingleChoiceSearchForm form, Model model) {
+        List<SingleChoiceQuestion> questions = singleChoiceService.getByForm(form);
+        model.addAttribute("form", form);
+        model.addAttribute("questions", questions);
+
+        return "searchsinglechoices";
     }
 }
