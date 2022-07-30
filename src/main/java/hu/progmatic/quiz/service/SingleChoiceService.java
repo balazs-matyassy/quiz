@@ -15,7 +15,23 @@ public class SingleChoiceService {
     Map<Long, SingleChoiceQuestion> questions = new TreeMap<>();
 
     public SingleChoiceService() {
+        SingleChoiceQuestion question1 = new SingleChoiceQuestion();
+        question1.setQuestion("Mi Magyarország fővárosa?");
+        question1.setAnswer(1);
+        question1.setOptionA("Budapest");
+        question1.setOptionB("Győr");
+        question1.setOptionC("Sopron");
+        question1.setOptionD("Miskolc");
+        saveQuestion(question1);
 
+        SingleChoiceQuestion question2 = new SingleChoiceQuestion();
+        question2.setQuestion("Mi Németország fővárosa?");
+        question2.setAnswer(2);
+        question2.setOptionA("München");
+        question2.setOptionB("Berlin");
+        question2.setOptionC("Köln");
+        question2.setOptionD("Frankfurt am Main");
+        saveQuestion(question2);
     }
 
     List<SingleChoiceQuestion> getAll() {
