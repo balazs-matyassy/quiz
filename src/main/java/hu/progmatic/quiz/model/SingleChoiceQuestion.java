@@ -15,6 +15,12 @@ public class SingleChoiceQuestion {
 
     private String optionD;
 
+    // NEM KÖTELEZŐ, DE SZEBB
+    // EMLÉKEZTETŐ: HA NINCS EGYETLEN KONSTRUKTOR SEM,
+    // AKKOR A JAVA AUTOMATIKUSAN GENERÁL EGY DEFAULT KONSTRUKTORT.
+    public SingleChoiceQuestion() {
+    }
+
     public Long getId() {
         return id;
     }
