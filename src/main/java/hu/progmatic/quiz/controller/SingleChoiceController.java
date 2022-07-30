@@ -27,6 +27,7 @@ public class SingleChoiceController {
     @GetMapping("/singlechoices/create")
     public String createQuestion(Model model) {
         // üres űrlap megjelenítése
+        // lehetőség lenne default értékek megadására (pl. question.setAnswer(3));
         model.addAttribute("question", new SingleChoiceQuestion());
 
         return "newsinglechoice";
