@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new single choice question</title>
+</head>
+<body>
+<h1>Create new single choice question</h1>
+<form data-th-action="@{/singlechoices/create}" data-th-object="${question}" method="post">
+    <table>
+        <tr>
+            <th>Question:</th>
+            <td><input type="text" data-th-field="*{question}" /></td>
+        </tr>
+        <tr>
+            <th>Answer:</th>
+            <td><input type="number" data-th-field="*{answer}" /></td>
+        </tr>
+        <tr>
+            <th>Option A:</th>
+            <td><input type="text" data-th-field="*{optionA}" /></td>
+        </tr>
+        <tr>
+            <th>Option B:</th>
+            <td><input type="text" data-th-field="*{optionB}" /></td>
+        </tr>
+        <tr>
+            <th>Option C:</th>
+            <td><input type="text" data-th-field="*{optionC}" /></td>
+        </tr>
+        <tr>
+            <th>Option D:</th>
+            <td><input type="text" data-th-field="*{optionD}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit">Create question</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

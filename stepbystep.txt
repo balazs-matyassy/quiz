@@ -64,3 +64,17 @@ Free choice questionnel létrehozni a:
 
 Pl. Ki volt Magyarország első királya?
 -> I. (Szent) István
+
+----------
+2. MILESTONE
+ÚJ KÉRDÉS HOZZÁADÁSA
+----------
+1. új view létrehozása
+newsinglechoice.html
+
+2. Kontroller kibővítése
+@GetMapping("/singlechoices/create")
+    public String createQuestion(Model model) {}
+
+"új aloldal létrehozása"
+csak az űrlap megjelenítéséért felel

@@ -23,4 +23,12 @@ public class SingleChoiceController {
 
         return "singlechoices";
     }
+
+    @GetMapping("/singlechoices/create")
+    public String createQuestion(Model model) {
+        // üres űrlap megjelenítése
+        model.addAttribute("question", new SingleChoiceQuestion());
+
+        return "newsinglechoice";
+    }
 }
