@@ -12,7 +12,7 @@ import java.util.TreeMap;
 public class SingleChoiceService {
     private long counter = 0;
 
-    Map<Long, SingleChoiceQuestion> questions = new TreeMap<>();
+    private Map<Long, SingleChoiceQuestion> questions = new TreeMap<>();
 
     public SingleChoiceService() {
         SingleChoiceQuestion question1 = new SingleChoiceQuestion();
@@ -34,11 +34,11 @@ public class SingleChoiceService {
         saveQuestion(question2);
     }
 
-    List<SingleChoiceQuestion> getAll() {
+    public List<SingleChoiceQuestion> getAll() {
         return new ArrayList<>(questions.values());
     }
 
-    SingleChoiceQuestion getById(Long id) {
+    public SingleChoiceQuestion getById(Long id) {
         return questions.get(id);
     }
 
