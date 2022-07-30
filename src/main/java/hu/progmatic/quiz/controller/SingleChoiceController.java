@@ -17,7 +17,7 @@ public class SingleChoiceController {
     }
 
     @GetMapping("/singlechoices")
-    public String getFoods(Model model) {
+    public String getQuestions(Model model) {
         List<SingleChoiceQuestion> questions = singleChoiceService.getAll();
         model.addAttribute("questions", questions);
 
