@@ -72,13 +72,6 @@ Pl. Ki volt Magyarország első királya?
 1. új view létrehozása
 newsinglechoice.html
 
-2. Kontroller kibővítése
-@GetMapping("/singlechoices/create")
-    public String createQuestion(Model model) {}
-
-"új aloldal létrehozása"
-csak az űrlap megjelenítéséért felel
-
 data-th-action="@{/singlechoices/create}"
 Melyik endpoint fogja kezelni a kitöltött és visszaküldött űrlapot?
 
@@ -88,3 +81,10 @@ Melyik modellben tárolt objektumot jelenítsük meg?
 
 POST requestként érdemes visszaküldeni
 method="post"
+
+2. Kontroller kibővítése
+@GetMapping("/singlechoices/create")
+    public String createQuestion(Model model) {}
+
+"új aloldal létrehozása"
+csak az űrlap megjelenítéséért felel
