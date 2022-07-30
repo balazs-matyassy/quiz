@@ -15,13 +15,44 @@ Hogyan nézzen ki a kvíz?
 1.3 Konstruktorok (szükség esetén)
 
 2. Service definiálása
+"szimulált adatbázis" / "megosztott map" / "közösen használt map"
+counter az automatikusan kiosztott ID-k miatt kell
+
 @Service egy speciális @Component
+
+minimum 2 keresést érdemes létrehozni (getAll, getById)
+keresés = "lekérdezés"
+Lehetnének további keresések is. Pl. getByQuestion...
+
+minimum 1 létrehozásért és frissítésért felelős metódus létrehozása (saveQuestion)
+ha id == null -> kioszt egy új ID-t (INSERT), ebben az esetben a put új bejegyzést hoz létre
+ha id != null, akkor a put a régi bejegyzést írja felül (UPDATE)
+
 2.1 Mintaadatok (szükség esetén)
 
 3. View (Thymeleaf sablon)
 
+Egyszerű HTML sablon definiálása.
+Statikus (nem függ a modell állapotától, pl. fejléc / <th>)
++ dinamikus részek (függnek a modell állapotától, pl. adat / <td>).
+
+Áttekintő nézetben a data-th-each attribútum segítségével annyi sort generálunk,
+amennyi kérdés van.
+
+Ebben az esetben itt nevezzük el a listát, amit később a kontrollerben átadunk.
+(questions)
+
 4. Controller
 4.1 Sercice DI (field, constructor)
+4.2 metódus létrehozása (összes kérdés listázása)
+- @GetMapping segítségével URL definiálása (route)
+- összes kérdés lekérdezése az "adatbázisból" (SingleChoiceService)
+List<SingleChoiceQuestion> questions = singleChoiceService.getAll();
+- összes kérdés (List) hozzáadása a modellhez
+model.addAttribute("questions", questions);
+- view kiválasztása
+(a view a beállított modell alapján kapja meg a paramétereket / változókat)
+return "singlechoices";
 
 ----------
 Feladat:
