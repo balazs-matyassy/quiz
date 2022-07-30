@@ -5,6 +5,7 @@ import hu.progmatic.quiz.service.SingleChoiceService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -31,5 +32,12 @@ public class SingleChoiceController {
         model.addAttribute("question", new SingleChoiceQuestion());
 
         return "newsinglechoice";
+    }
+
+    @PostMapping("/singlechoices/create")
+    public String saveNewQuestion(SingleChoiceQuestion question) {
+        singleChoiceService.saveQuestion(question);
+
+        return "redirect:/singlechoices";
     }
 }

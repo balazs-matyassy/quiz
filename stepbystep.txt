@@ -73,6 +73,9 @@ Pl. Ki volt Magyarország első királya?
 newsinglechoice.html
 
 data-th-action="@{/singlechoices/create}"
+"Válaszküldemény" esetében hova kell a kitöltött űrlapot visszaküldeni?
+
+
 Melyik endpoint fogja kezelni a kitöltött és visszaküldött űrlapot?
 
 data-th-object="${question}"

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new free choice question</title>
+</head>
+<body>
+<h1>Create new free choice question</h1>
+<form data-th-action="@{/freechoices/create}" data-th-object="${question}" method="post">
+    <table>
+        <tr>
+            <th>Question:</th>
+            <td><input type="text" data-th-field="*{question}" /></td>
+        </tr>
+        <tr>
+            <th>Answer:</th>
+            <td><input type="text" data-th-field="*{answer}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit">Create question</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
