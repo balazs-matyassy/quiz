@@ -2,27 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>List of single choice questions</title>
+    <title>View single choice</title>
 </head>
 <body>
-<h1>List of single choice questions</h1>
+<h1>View single choice</h1>
 <table>
     <tr>
         <th>Id</th>
-        <th>Question</th>
-        <th>Answer</th>
-        <th>Option A.</th>
-        <th>Option B.</th>
-        <th>Option C.</th>
-        <th>Option D.</th>
+        <td data-th-text="${question.id}"></td>
     </tr>
-    <tr data-th-each="question: ${questions}">
-        <td><a data-th-href="@{/singlechoices/{id}(id=${question.id})}" data-th-text="${question.id}"></a></td>
+    <tr>
+        <th>Question</th>
         <td data-th-text="${question.question}"></td>
+    </tr>
+    <tr>
+        <th>Answer</th>
         <td data-th-text="${question.answer}"></td>
+    </tr>
+    <tr>
+        <th>Option A.</th>
         <td data-th-text="${question.optionA}"></td>
+    </tr>
+    <tr>
+        <th>Option B.</th>
         <td data-th-text="${question.optionB}"></td>
+    </tr>
+    <tr>
+        <th>Option C.</th>
         <td data-th-text="${question.optionC}"></td>
+    </tr>
+    <tr>
+        <th>Option D.</th>
         <td data-th-text="${question.optionD}"></td>
     </tr>
 </table>

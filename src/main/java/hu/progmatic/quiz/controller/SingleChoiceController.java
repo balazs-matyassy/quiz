@@ -5,6 +5,7 @@ import hu.progmatic.quiz.service.SingleChoiceService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -23,6 +24,14 @@ public class SingleChoiceController {
         model.addAttribute("questions", questions);
 
         return "singlechoices";
+    }
+
+    @GetMapping("/singlechoices/{id}")
+    public String viewQuestion(@PathVariable long id, Model model) {
+        SingleChoiceQuestion question = singleChoiceService.getById(id);
+        model.addAttribute("question", question);
+
+        return "viewsinglechoice";
     }
 
     @GetMapping("/singlechoices/create")
