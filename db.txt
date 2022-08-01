@@ -1,0 +1,43 @@
+1. pom.xml
+connector könyvtár hozzáadása (ezzel lehet a konkrét adatbázishoz pl. MySQL, Oracle... kapcsolódni).
+
+<dependency>
+    <groupId>org.mariadb.jdbc</groupId>
+    <artifactId>mariadb-java-client</artifactId>
+    <scope>runtime</scope>
+</dependency>
+
+2. application.properties (kapcsolat beállítása, melyik szerverhet szeretnénk kapcsolódni)
+spring.datasource.url=jdbc:mariadb://localhost:3306/quiz
+spring.datasource.username=root
+spring.datasource.password=
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=create-drop
+
+3. modell átalakítása entitássá
+@Entity annotáció + az elsődleges kulcsnál az @Id és a @GeneratedValue annotációk
+
+4. repositry létrehozása (Spring automatikusan generálja az interface alapján)
+@Repository
+public interface SingleChoiceRepository extends CrudRepository<SingleChoiceQuestion, Long> {
+}
+
+5. A service átállítása, hogy Map helyett a Repository-t használja.
+public List<SingleChoiceQuestion> getAll() {
+        return new ArrayList<>((Collection) repository.findAll());
+    }
+
+    public SingleChoiceQuestion getById(Long id) {
+        // Segédosztály (csomagoló)
+        // Ha nincs találat, akkor null helyett ebben az esetben is egy érvényes objektumot kapunk vissza.
+        // emlékeztető: Map -> getOrDefault
+        Optional<SingleChoiceQuestion> question = repository.findById(id);
+
+        return question.orElseThrow();
+    }
+
+public SingleChoiceQuestion saveQuestion(SingleChoiceQuestion question) {
+        repository.save(question);
+
+        return question;
+    }
