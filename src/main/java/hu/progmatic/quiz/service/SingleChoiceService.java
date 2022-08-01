@@ -2,51 +2,41 @@ package hu.progmatic.quiz.service;
 
 import hu.progmatic.quiz.form.SingleChoiceSearchForm;
 import hu.progmatic.quiz.model.SingleChoiceQuestion;
+import hu.progmatic.quiz.repository.SingleChoiceRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 @Service
 public class SingleChoiceService {
+    // ez helyettesíti a Map-t
+    private SingleChoiceRepository repository;
+
     private long counter = 0;
 
     private Map<Long, SingleChoiceQuestion> questions = new TreeMap<>();
 
-    public SingleChoiceService() {
-        SingleChoiceQuestion question1 = new SingleChoiceQuestion();
-        question1.setQuestion("Mi Magyarország fővárosa?");
-        question1.setAnswer(1);
-        question1.setOptionA("Budapest");
-        question1.setOptionB("Győr");
-        question1.setOptionC("Sopron");
-        question1.setOptionD("Miskolc");
-        saveQuestion(question1);
-
-        SingleChoiceQuestion question2 = new SingleChoiceQuestion();
-        question2.setQuestion("Mi Németország fővárosa?");
-        question2.setAnswer(2);
-        question2.setOptionA("München");
-        question2.setOptionB("Berlin");
-        question2.setOptionC("Köln");
-        question2.setOptionD("Frankfurt am Main");
-        saveQuestion(question2);
+    public SingleChoiceService(SingleChoiceRepository repository) {
+        this.repository = repository;
     }
 
     public List<SingleChoiceQuestion> getAll() {
-        return new ArrayList<>(questions.values());
+        return new ArrayList<>((Collection) repository.findAll());
     }
 
     public SingleChoiceQuestion getById(Long id) {
-        return questions.get(id);
+        // Segédosztály (csomagoló)
+        // Ha nincs találat, akkor null helyett ebben az esetben is egy érvényes objektumot kapunk vissza.
+        // emlékeztető: Map -> getOrDefault
+        Optional<SingleChoiceQuestion> question = repository.findById(id);
+
+        return question.orElseThrow();
     }
 
     public List<SingleChoiceQuestion> getByForm(SingleChoiceSearchForm form) {
         List<SingleChoiceQuestion> result = new ArrayList<>();
 
-        for (SingleChoiceQuestion question : questions.values()) {
+        for (SingleChoiceQuestion question : getAll()) {
             if (form.getId() != null && !form.getId().equals(question.getId())) {
                 continue;
             }
@@ -62,12 +52,7 @@ public class SingleChoiceService {
     }
 
     public SingleChoiceQuestion saveQuestion(SingleChoiceQuestion question) {
-        if (question.getId() == null) {
-            counter++;
-            question.setId(counter);
-        }
-
-        questions.put(question.getId(), question);
+        repository.save(question);
 
         return question;
     }
