@@ -12,6 +12,13 @@ public class LogMessage {
 
     private String message;
 
+    public LogMessage() {
+    }
+
+    public LogMessage(String message) {
+        this.message = message;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
